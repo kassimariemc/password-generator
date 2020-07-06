@@ -18,11 +18,11 @@ var lowercase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'
 var uppercase = String(lowercase).toUpperCase().split(",");
 var specialChar = ["!", "#", "$", "'", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~"];
 
+// Convert password to a string
 var securePassword = '';
 
 // Begin function
 function generatePassword() {
-  // Remove any previously generated password?
   
   // Initial Prompt
   var UserPasswordLength = prompt("How long would you like your secure password to be?" + "\nMust be between 8-128 characters");
@@ -32,6 +32,7 @@ function generatePassword() {
 
   // Password length must be between 8-128
   if (passwordLength > 7 && passwordLength < 129) {
+    
     // Store user password criteria
     var userLowercaseChoice = confirm("Would you like your password to include lowercase characters?");
 
@@ -320,12 +321,15 @@ function generatePassword() {
     // If no criteria selected
     else {
       alert("You must select at least 1 criteria. Please start over.");
+      location.reload();
     }
     
+    // Final Product
     return securePassword;
   }
+  // If password length selected not within 8-128
   else {
     alert("Password must be between 8-128 characters. Please start over.");
-
+    location.reload();
   }
 }
