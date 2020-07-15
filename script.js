@@ -46,25 +46,20 @@ function generatePassword() {
 
     var userSpecialCharChoice = confirm("Would you like your password to include special characters (i.e. !$#@)?");
 
-    // Generate Random Pick for Each Crtieria
     // Add criteria to password array if selected by user
     if (userLowercaseChoice) {
-      var randomLowercase = lowercase[Math.floor(Math.random() * lowercase.length)];
       criteriaArray = criteriaArray.concat(lowercase);
     }
 
     if (userUppercaseChoice) {
-      var randomUppercase = uppercase[Math.floor(Math.random() * uppercase.length)];
       criteriaArray = criteriaArray.concat(uppercase);
     }
 
     if (userNumericChoice) {
-      var randomNum = Math.floor((Math.random() * 9));
       criteriaArray = criteriaArray.concat(numbers);
     }
 
     if (userSpecialCharChoice) {
-      var randomSpecialChar = specialChar[Math.floor(Math.random() * specialChar.length)];
       criteriaArray = criteriaArray.concat(specialChar);
     }
     
@@ -76,43 +71,10 @@ function generatePassword() {
 
     // Create password
     for(var i = 0; i < passwordLength; i++) {
-      securePassword += criteriaArray[Math.floor(Math.random() * criteriaArray.length)];
+    securePassword += criteriaArray[Math.floor(Math.random() * criteriaArray.length)];
     }
-
-    // Validate that password includes all selected criteria
-    for(var i = 0; i < securePassword.length; i++) {
-      if (userLowercaseChoice) {
-        for(var j = 0; j < lowercase.length; j++) {
-          if (securePassword.charAt(i) != lowercase[j]) {
-            var finalSecurePassword = securePassword.replace(securePassword[i], randomLowercase);
-          }
-        }
-      }
-      if (userUppercaseChoice) {
-        for(var j = 0; j < uppercase.length; j++) {
-          if (securePassword.charAt(i) != uppercase[j]) {
-            var finalSecurePassword = securePassword.replace(securePassword[i], randomUppercase);
-          }
-        }
-      }
-      if (userNumericChoice) {
-        for(var j = 0; j < numbers.length; j++) {
-          if (securePassword.charAt(i) != numbers[j]) {
-            var finalSecurePassword = securePassword.replace(securePassword[i], randomNum);
-          }
-        }
-      }
-      if (userSpecialCharChoice) {
-        for(var j = 0; j < specialChar.length; j++) {
-          if (securePassword.charAt(i) != specialChar[j]) {
-            var finalSecurePassword = securePassword.replace(securePassword[i], randomSpecialChar);
-          }
-        }
-      }
-    }  
     
-    // Return Final Product
-    return finalSecurePassword;
+    return securePassword;
   }
 
   // If password length selected not within 8-128
